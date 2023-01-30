@@ -1,0 +1,4 @@
+env
+measurement/__pycache__
+measurement/migrations/__pycache__
+smart_home/__pycache__
