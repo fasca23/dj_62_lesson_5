@@ -7,7 +7,7 @@ class Sensor(models.Model):
     description = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return f'{self.name} - {self.description}'
 
 class Measurement(models.Model):
     id_sensor = models.ForeignKey(Sensor,on_delete=models.CASCADE)
@@ -15,4 +15,4 @@ class Measurement(models.Model):
     created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.temperature
+        return f'{self.id_sensor} - {self.temperature} - {self.created_at}'
