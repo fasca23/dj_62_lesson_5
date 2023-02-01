@@ -3,7 +3,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListCreateAPIView 
 from rest_framework.generics import RetrieveAPIView
 
 from measurement.models import Sensor, Measurement
@@ -25,23 +25,26 @@ from django.forms import model_to_dict
 #     def post(self, request):
 #         return Response({'status': 'ok'})
 
-class SensorView(ListAPIView):
+class SensorView(ListCreateAPIView):
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializers
 
-    def post(self, request):
-        post_new = Sensor.objects.create(
-            name=request.data['name'],
-            description=request.data['description']
-        )
-        return Response({'post': model_to_dict(post_new)})
+    # def post(self, request):
+    #     post_new = Sensor.objects.create(
+    #         name=request.data['name'],
+    #         description=request.data['description']
+    #     )
+    #     return Response({'post': model_to_dict(post_new)})
 
-    def patch(self, request):
-        patch_new = Sensor.objects.update(
-            name=request.data['name'],
-            description=request.data['description']
-        )
-        return Response({'patch': model_to_dict(patch_new)})
+    # def patch(self, request):
+    #     patch_new = Sensor.objects.update(
+    #         name=request.data['name'],
+    #         description=request.data['description']
+    #     )
+    #     return Response({'patch': model_to_dict(patch_new)})
+
+# class SensorView(UpdateAPIView):
+
 
 class SensorsView(RetrieveAPIView):
     queryset = Sensor.objects.all()
