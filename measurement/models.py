@@ -15,7 +15,8 @@ class Measurement(models.Model):
     id_sensor = models.ForeignKey(Sensor,on_delete=models.CASCADE, related_name='measurements')
     temperature= models.FloatField()
     created_at = models.DateTimeField(auto_now=True)
-    image = ImageField(max_length=100, allow_empty_file=False)
+    # image = ImageField(max_length=100, allow_empty_file=False)
+    photo = models.ImageField(upload_to='image', null=True)
 
     def __str__(self):
         return f'{self.id_sensor} - {self.temperature} - {self.created_at}'
