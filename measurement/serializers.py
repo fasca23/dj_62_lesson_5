@@ -8,8 +8,18 @@ class MeasurementSerializer(serializers.ModelSerializer):
         model = Measurement
         fields = '__all__'
 
+class MeasurementSensorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Measurement
+        fields = ['temperature', 'created_at']
+
 class SensorSerializers(serializers.ModelSerializer):
-    measurements = MeasurementSerializer(read_only=True, many=True)
+    measurements = MeasurementSensorSerializer(read_only=True, many=True)
     class Meta:
         model = Sensor
         fields = ['id', 'name', 'description', 'measurements']
+
+class SensorsSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Sensor
+        fields = '__all__'
